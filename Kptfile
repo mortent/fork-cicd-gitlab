@@ -30,7 +30,7 @@ openAPI:
       x-k8s-cli:
         substitution:
           name: gcs-git-lfs
-          pattern: ${project-id}-git-lfs
+          pattern: ${project-id}-prefix-git-lfs
           values:
           - marker: ${project-id}
             ref: '#/definitions/io.k8s.cli.setters.project-id'
@@ -38,7 +38,7 @@ openAPI:
       x-k8s-cli:
         substitution:
           name: gcs-git-packages
-          pattern: ${project-id}-git-packages
+          pattern: ${project-id}-prefix-git-packages
           values:
           - marker: ${project-id}
             ref: '#/definitions/io.k8s.cli.setters.project-id'
@@ -46,7 +46,7 @@ openAPI:
       x-k8s-cli:
         substitution:
           name: gcs-gitlab-artifacts
-          pattern: ${project-id}-gitlab-artifacts
+          pattern: ${project-id}-prefix-gitlab-artifacts
           values:
           - marker: ${project-id}
             ref: '#/definitions/io.k8s.cli.setters.project-id'
@@ -54,7 +54,7 @@ openAPI:
       x-k8s-cli:
         substitution:
           name: gcs-gitlab-backups
-          pattern: ${project-id}-gitlab-backups
+          pattern: ${project-id}-prefix-gitlab-backups
           values:
           - marker: ${project-id}
             ref: '#/definitions/io.k8s.cli.setters.project-id'
@@ -62,7 +62,7 @@ openAPI:
       x-k8s-cli:
         substitution:
           name: gcs-gitlab-uploads
-          pattern: ${project-id}-gitlab-uploads
+          pattern: ${project-id}-prefix-gitlab-uploads
           values:
           - marker: ${project-id}
             ref: '#/definitions/io.k8s.cli.setters.project-id'
@@ -70,7 +70,7 @@ openAPI:
       x-k8s-cli:
         substitution:
           name: gcs-pseudo
-          pattern: ${project-id}-pseudo
+          pattern: ${project-id}-prefix-pseudo
           values:
           - marker: ${project-id}
             ref: '#/definitions/io.k8s.cli.setters.project-id'
@@ -78,7 +78,7 @@ openAPI:
       x-k8s-cli:
         substitution:
           name: gcs-registry
-          pattern: ${project-id}-registry
+          pattern: ${project-id}-prefix-registry
           values:
           - marker: ${project-id}
             ref: '#/definitions/io.k8s.cli.setters.project-id'
@@ -86,7 +86,7 @@ openAPI:
       x-k8s-cli:
         substitution:
           name: gcs-runner-cache
-          pattern: ${project-id}-runner-cache
+          pattern: ${project-id}-prefix-runner-cache
           values:
           - marker: ${project-id}
             ref: '#/definitions/io.k8s.cli.setters.project-id'
@@ -94,7 +94,7 @@ openAPI:
       x-k8s-cli:
         substitution:
           name: gcs-sa
-          pattern: serviceAccount:gitlab-gcs@${project-id}.iam.gserviceaccount.com
+          pattern: serviceAccount:prefix-gitlab-gcs@${project-id}.iam.gserviceaccount.com
           values:
           - marker: ${project-id}
             ref: '#/definitions/io.k8s.cli.setters.project-id'
@@ -102,7 +102,7 @@ openAPI:
       x-k8s-cli:
         substitution:
           name: network-external
-          pattern: projects/${project-id}/global/networks/gitlab
+          pattern: projects/${project-id}/global/networks/prefix-gitlab
           values:
           - marker: ${project-id}
             ref: '#/definitions/io.k8s.cli.setters.project-id'

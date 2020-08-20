@@ -1,7 +1,7 @@
 apiVersion: compute.cnrm.cloud.google.com/v1beta1
 kind: ComputeNetwork
 metadata:
-  name: gitlab
+  name: prefix-gitlab
   namespace: gitlab # {"$kpt-set":"namespace"}
 spec:
   autoCreateSubnetworks: false
@@ -9,23 +9,23 @@ spec:
 apiVersion: compute.cnrm.cloud.google.com/v1beta1
 kind: ComputeSubnetwork
 metadata:
-  name: gitlab
+  name: prefix-gitlab
   namespace: gitlab # {"$kpt-set":"namespace"}
 spec:
   ipCidrRange: 10.0.0.0/16
   networkRef:
-    name: gitlab
+    name: prefix-gitlab
   region: us-central1
   secondaryIpRange:
   - ipCidrRange: 10.3.0.0/16
-    rangeName: gitlab-cluster-pod-cidr
+    rangeName: prefix-gitlab-cluster-pod-cidr
   - ipCidrRange: 10.2.0.0/16
-    rangeName: gitlab-cluster-service-cidr
+    rangeName: prefix-gitlab-cluster-service-cidr
 ---
 apiVersion: compute.cnrm.cloud.google.com/v1beta1
 kind: ComputeAddress
 metadata:
-  name: gitlab
+  name: prefix-gitlab
   namespace: gitlab # {"$kpt-set":"namespace"}
 spec:
   addressType: EXTERNAL
