@@ -30,82 +30,102 @@ openAPI:
       x-k8s-cli:
         substitution:
           name: gcs-git-lfs
-          pattern: ${project-id}-prefix-git-lfs
+          pattern: ${project-id}-${prefix}-git-lfs
           values:
           - marker: ${project-id}
             ref: '#/definitions/io.k8s.cli.setters.project-id'
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'
     io.k8s.cli.substitutions.gcs-git-packages:
       x-k8s-cli:
         substitution:
           name: gcs-git-packages
-          pattern: ${project-id}-prefix-git-packages
+          pattern: ${project-id}-${prefix}-git-packages
           values:
           - marker: ${project-id}
             ref: '#/definitions/io.k8s.cli.setters.project-id'
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'
     io.k8s.cli.substitutions.gcs-gitlab-artifacts:
       x-k8s-cli:
         substitution:
           name: gcs-gitlab-artifacts
-          pattern: ${project-id}-prefix-gitlab-artifacts
+          pattern: ${project-id}-${prefix}-gitlab-artifacts
           values:
           - marker: ${project-id}
             ref: '#/definitions/io.k8s.cli.setters.project-id'
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'
     io.k8s.cli.substitutions.gcs-gitlab-backups:
       x-k8s-cli:
         substitution:
           name: gcs-gitlab-backups
-          pattern: ${project-id}-prefix-gitlab-backups
+          pattern: ${project-id}-${prefix}-gitlab-backups
           values:
           - marker: ${project-id}
             ref: '#/definitions/io.k8s.cli.setters.project-id'
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'
     io.k8s.cli.substitutions.gcs-gitlab-uploads:
       x-k8s-cli:
         substitution:
           name: gcs-gitlab-uploads
-          pattern: ${project-id}-prefix-gitlab-uploads
+          pattern: ${project-id}-${prefix}-gitlab-uploads
           values:
           - marker: ${project-id}
             ref: '#/definitions/io.k8s.cli.setters.project-id'
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'
     io.k8s.cli.substitutions.gcs-pseudo:
       x-k8s-cli:
         substitution:
           name: gcs-pseudo
-          pattern: ${project-id}-prefix-pseudo
+          pattern: ${project-id}-${prefix}-pseudo
           values:
           - marker: ${project-id}
             ref: '#/definitions/io.k8s.cli.setters.project-id'
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'
     io.k8s.cli.substitutions.gcs-registry:
       x-k8s-cli:
         substitution:
           name: gcs-registry
-          pattern: ${project-id}-prefix-registry
+          pattern: ${project-id}-${prefix}-registry
           values:
           - marker: ${project-id}
             ref: '#/definitions/io.k8s.cli.setters.project-id'
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'
     io.k8s.cli.substitutions.gcs-runner-cache:
       x-k8s-cli:
         substitution:
           name: gcs-runner-cache
-          pattern: ${project-id}-prefix-runner-cache
+          pattern: ${project-id}-${prefix}-runner-cache
           values:
           - marker: ${project-id}
             ref: '#/definitions/io.k8s.cli.setters.project-id'
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'
     io.k8s.cli.substitutions.gcs-sa:
       x-k8s-cli:
         substitution:
           name: gcs-sa
-          pattern: serviceAccount:prefix-gitlab-gcs@${project-id}.iam.gserviceaccount.com
+          pattern: serviceAccount:${prefix}-gitlab-gcs@${project-id}.iam.gserviceaccount.com
           values:
           - marker: ${project-id}
             ref: '#/definitions/io.k8s.cli.setters.project-id'
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'
     io.k8s.cli.substitutions.network-external:
       x-k8s-cli:
         substitution:
           name: network-external
-          pattern: projects/${project-id}/global/networks/prefix-gitlab
+          pattern: projects/${project-id}/global/networks/${prefix}-gitlab
           values:
           - marker: ${project-id}
             ref: '#/definitions/io.k8s.cli.setters.project-id'
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'
     io.k8s.cli.substitutions.project-external:
       x-k8s-cli:
         substitution:
@@ -114,3 +134,144 @@ openAPI:
           values:
           - marker: ${project-id}
             ref: '#/definitions/io.k8s.cli.setters.project-id'
+    io.k8s.cli.substitutions.container-cluster-name:
+      x-k8s-cli:
+        substitution:
+          name: container-cluster-name
+          pattern: ${prefix}-gitlab
+          values:
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'
+    io.k8s.cli.substitutions.network-name:
+      x-k8s-cli:
+        substitution:
+          name: network-name
+          pattern: ${prefix}-gitlab
+          values:
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'
+    io.k8s.cli.substitutions.container-nodepool-name:
+      x-k8s-cli:
+        substitution:
+          name: container-nodepool-name
+          pattern: ${prefix}-gitlab
+          values:
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'
+    io.k8s.cli.substitutions.subnetwork-name:
+      x-k8s-cli:
+        substitution:
+          name: subnetwork-name
+          pattern: ${prefix}-gitlab
+          values:
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'
+    io.k8s.cli.substitutions.container-sa-name:
+      x-k8s-cli:
+        substitution:
+          name: container-sa-name
+          pattern: ${prefix}-gitlab-cluster
+          values:
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'
+    io.k8s.cli.substitutions.compute-address-name:
+      x-k8s-cli:
+        substitution:
+          name: compute-address-name
+          pattern: ${prefix}-gitlab
+          values:
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'
+    io.k8s.cli.substitutions.sql-compute-address-name:
+      x-k8s-cli:
+        substitution:
+          name: sql-compute-address-name
+          pattern: ${prefix}-gitlab-sql
+          values:
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'
+    io.k8s.cli.substitutions.private-vpc-connection-name:
+      x-k8s-cli:
+        substitution:
+          name: private-vpc-connection-name
+          pattern: ${prefix}-private-vpc-connection
+          values:
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'
+    io.k8s.cli.substitutions.sql-instance-name:
+      x-k8s-cli:
+        substitution:
+          name: sql-instance-name
+          pattern: ${prefix}-gitlab-db
+          values:
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'
+    io.k8s.cli.setters.prefix:
+      x-k8s-cli:
+        setter:
+          name: prefix
+          value: prefix
+    io.k8s.cli.substitutions.sql-database-name:
+      x-k8s-cli:
+        substitution:
+          name: sql-database-name
+          pattern: ${prefix}-gitlabhq-production
+          values:
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'
+    io.k8s.cli.substitutions.sql-user-name:
+      x-k8s-cli:
+        substitution:
+          name: sql-user-name
+          pattern: ${prefix}-gitlab
+          values:
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'
+    io.k8s.cli.substitutions.redis-name:
+      x-k8s-cli:
+        substitution:
+          name: redis-name
+          pattern: ${prefix}-gitlab
+          values:
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'
+    io.k8s.cli.substitutions.gcs-sa-name:
+      x-k8s-cli:
+        substitution:
+          name: gcs-sa-name
+          pattern: ${prefix}-gitlab-gcs
+          values:
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'
+    io.k8s.cli.substitutions.gcs-sak-name:
+      x-k8s-cli:
+        substitution:
+          name: gcs-sak-name
+          pattern: ${prefix}-gitlab-gcs
+          values:
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'
+    io.k8s.cli.substitutions.gcs-pm-name:
+      x-k8s-cli:
+        substitution:
+          name: gcs-pm-name
+          pattern: ${prefix}-gitlab-gcs
+          values:
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'
+    io.k8s.cli.substitutions.network-pod-cidr-name:
+      x-k8s-cli:
+        substitution:
+          name: network-pod-cidr-name
+          pattern: ${prefix}-gitlab-cluster-pod-cidr
+          values:
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'
+    io.k8s.cli.substitutions.network-service-cidr-name:
+      x-k8s-cli:
+        substitution:
+          name: network-service-cidr-name
+          pattern: ${prefix}-gitlab-cluster-service-cidr
+          values:
+          - marker: ${prefix}
+            ref: '#/definitions/io.k8s.cli.setters.prefix'

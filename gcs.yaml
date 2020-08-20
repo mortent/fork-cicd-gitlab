@@ -1,7 +1,7 @@
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMServiceAccount
 metadata:
-  name: prefix-gitlab-gcs
+  name: prefix-gitlab-gcs # {"$kpt-set":"gcs-sa-name"}
   namespace: gitlab # {"$kpt-set":"namespace"}
 spec:
   displayName: Gitlab Cloud Storage
@@ -9,16 +9,16 @@ spec:
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMServiceAccountKey
 metadata:
-  name: prefix-gitlab-gcs
+  name: prefix-gitlab-gcs # {"$kpt-set":"gcs-sak-name"}
   namespace: gitlab # {"$kpt-set":"namespace"}
 spec:
   serviceAccountRef:
-    name: prefix-gitlab-gcs
+    name: prefix-gitlab-gcs # {"$kpt-set":"gcs-sa-name"}
 ---
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMPolicyMember
 metadata:
-  name: prefix-gitlab-gcs
+  name: prefix-gitlab-gcs # {"$kpt-set":"gcs-pm-name"}
   namespace: gitlab # {"$kpt-set":"namespace"}
 spec:
   member: serviceAccount:prefix-gitlab-gcs@a-project-id.iam.gserviceaccount.com # {"$kpt-set":"gcs-sa"}

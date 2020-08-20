@@ -1,38 +1,38 @@
 apiVersion: container.cnrm.cloud.google.com/v1beta1
 kind: ContainerCluster
 metadata:
-  name: prefix-gitlab
+  name: prefix-gitlab # {"$kpt-set":"container-cluster-name"}
   namespace: gitlab # {"$kpt-set":"namespace"}
   annotations:
     cnrm.cloud.google.com/remove-default-node-pool: "true" # don't create the default node pool
 spec:
   initialNodeCount: 1 # this field must be set to greater than 0
   ipAllocationPolicy:
-    clusterSecondaryRangeName: prefix-gitlab-cluster-pod-cidr
-    servicesSecondaryRangeName: prefix-gitlab-cluster-service-cidr
+    clusterSecondaryRangeName: prefix-gitlab-cluster-pod-cidr # {"$kpt-set":"network-pod-cidr-name"}
+    servicesSecondaryRangeName: prefix-gitlab-cluster-service-cidr # {"$kpt-set":"network-service-cidr-name"}
   location: us-central1
   masterAuth:
     clientCertificateConfig:
       issueClientCertificate: true
   networkRef:
-    name: prefix-gitlab
+    name: prefix-gitlab # {"$kpt-set":"network-name"}
   subnetworkRef:
-    name: prefix-gitlab
+    name: prefix-gitlab # {"$kpt-set":"subnetwork-name"}
 ---
 apiVersion: container.cnrm.cloud.google.com/v1beta1
 kind: ContainerNodePool
 metadata:
-  name: prefix-gitlab
+  name: prefix-gitlab # {"$kpt-set":"container-nodepool-name"}
   namespace: gitlab # {"$kpt-set":"namespace"}
 spec:
   clusterRef:
-    name: prefix-gitlab
+    name: prefix-gitlab # {"$kpt-set":"container-cluster-name"}
   location: us-central1
   nodeConfig:
     metadata:
-      cluster_name: prefix-gitlab
+      cluster_name: prefix-gitlab # {"$kpt-set":"container-cluster-name"}
     labels:
-      cluster_name: prefix-gitlab
+      cluster_name: prefix-gitlab # {"$kpt-set":"container-cluster-name"}
     machineType: n1-standard-4
     oauthScopes:
     - "https://www.googleapis.com/auth/compute"
@@ -40,13 +40,13 @@ spec:
     - "https://www.googleapis.com/auth/logging.write"
     - "https://www.googleapis.com/auth/monitoring"
     serviceAccountRef:
-      name: prefix-gitlab-cluster
+      name: prefix-gitlab-cluster # {"$kpt-set":"container-sa-name"}
   nodeCount: 1
 ---
 apiVersion: iam.cnrm.cloud.google.com/v1beta1
 kind: IAMServiceAccount
 metadata:
-  name: prefix-gitlab-cluster
+  name: prefix-gitlab-cluster # {"$kpt-set":"container-sa-name"}
   namespace: gitlab # {"$kpt-set":"namespace"}
 spec:
   displayName: Service Account for GitLab cluster

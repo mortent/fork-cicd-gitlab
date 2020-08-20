@@ -1,33 +1,33 @@
 apiVersion: compute.cnrm.cloud.google.com/v1beta1
 kind: ComputeAddress
 metadata:
-  name: prefix-gitlab-sql
+  name: prefix-gitlab-sql # {"$kpt-set":"sql-compute-address-name"}
   namespace: gitlab # {"$kpt-set":"namespace"}
 spec:
   address: 10.1.0.0
   addressType: INTERNAL
   location: global
   networkRef:
-    name: prefix-gitlab
+    name: prefix-gitlab # {"$kpt-set":"network-name"}
   prefixLength: 16
   purpose: VPC_PEERING
 ---
 apiVersion: servicenetworking.cnrm.cloud.google.com/v1beta1
 kind: ServiceNetworkingConnection
 metadata:
-  name: prefix-private-vpc-connection
+  name: prefix-private-vpc-connection # {"$kpt-set":"private-vpc-connection-name"}
   namespace: gitlab # {"$kpt-set":"namespace"}
 spec:
   service: servicenetworking.googleapis.com
   networkRef:
-    name: prefix-gitlab
+    name: prefix-gitlab # {"$kpt-set":"network-name"}
   reservedPeeringRanges:
-  - name: prefix-gitlab-sql
+  - name: prefix-gitlab-sql # {"$kpt-set":"sql-compute-address-name"}
 ---
 apiVersion: sql.cnrm.cloud.google.com/v1beta1
 kind: SQLInstance
 metadata:
-  name: prefix-gitlab-db
+  name: prefix-gitlab-db # {"$kpt-set":"sql-instance-name"}
   namespace: gitlab # {"$kpt-set":"namespace"}
 spec:
   databaseVersion: POSTGRES_9_6
@@ -51,20 +51,20 @@ spec:
 apiVersion: sql.cnrm.cloud.google.com/v1beta1
 kind: SQLDatabase
 metadata:
-  name: prefix-gitlabhq-production
+  name: prefix-gitlabhq-production # {"$kpt-set":"sql-database-name"}
   namespace: gitlab # {"$kpt-set":"namespace"}
 spec:
   instanceRef:
-    name: prefix-gitlab-db
+    name: prefix-gitlab-db # {"$kpt-set":"sql-instance-name"}
 ---
 apiVersion: sql.cnrm.cloud.google.com/v1beta1
 kind: SQLUser
 metadata:
-  name: prefix-gitlab
+  name: prefix-gitlab # {"$kpt-set":"sql-user-name"}
   namespace: gitlab # {"$kpt-set":"namespace"}
 spec:
   instanceRef:
-    name: prefix-gitlab-db
+    name: prefix-gitlab-db # {"$kpt-set":"sql-instance-name"}
   password:
     valueFrom:
       secretKeyRef:
@@ -74,11 +74,11 @@ spec:
 apiVersion: redis.cnrm.cloud.google.com/v1beta1
 kind: RedisInstance
 metadata:
-  name: prefix-gitlab
+  name: prefix-gitlab # {"$kpt-set":"redis-name"}
   namespace: gitlab # {"$kpt-set":"namespace"}
 spec:
   authorizedNetworkRef:
-    name: prefix-gitlab
+    name: prefix-gitlab # {"$kpt-set":"network-name"}
   displayName: Gitlab Redis
   memorySizeGb: 5
   region: us-central1
